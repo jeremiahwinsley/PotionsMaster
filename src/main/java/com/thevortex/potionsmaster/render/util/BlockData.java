@@ -1,7 +1,6 @@
 package com.thevortex.potionsmaster.render.util;
 
 import com.thevortex.potionsmaster.render.util.OutlineColor;
-import net.minecraft.world.item.ItemStack;
 
 
 public class BlockData {

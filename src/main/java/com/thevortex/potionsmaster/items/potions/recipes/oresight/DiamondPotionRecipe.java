@@ -1,14 +1,13 @@
 package com.thevortex.potionsmaster.items.potions.recipes.oresight;
 
-import com.thevortex.potionsmaster.init.ModPotions;
-
 import com.thevortex.potionsmaster.init.ModRegistry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.common.brewing.BrewingRecipe;
+import net.neoforged.neoforge.common.brewing.BrewingRecipe;
 
 
 public class DiamondPotionRecipe extends BrewingRecipe {
@@ -21,7 +20,8 @@ public class DiamondPotionRecipe extends BrewingRecipe {
 
     @Override
     public boolean isInput(ItemStack input) {
-        return (PotionUtils.getPotion(input) == Potions.MUNDANE);
+        PotionContents potioncontents = input.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
+        return potioncontents.is(Potions.MUNDANE);
     }
 
     @Override
@@ -36,7 +36,9 @@ public class DiamondPotionRecipe extends BrewingRecipe {
     }
 
     public ItemStack getOutput() {
-        return PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.DIAMOND_SIGHT);
+        ItemStack itemstack = new ItemStack(Items.POTION);
+        itemstack.set(DataComponents.POTION_CONTENTS, new PotionContents(ModRegistry.DIAMOND_SIGHT));
+        return itemstack;
     }
 
 }

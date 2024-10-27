@@ -2,22 +2,25 @@ package com.thevortex.potionsmaster.render.util.xray;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
-import com.thevortex.potionsmaster.PotionsMaster;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.VertexBuffer;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import com.thevortex.potionsmaster.render.util.BlockInfo;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.MouseHandler;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderStateShard;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RenderLevelStageEvent;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import org.lwjgl.opengl.GL11;
 
 import java.lang.reflect.InvocationTargetException;
@@ -26,7 +29,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 
 
 public class Render {
@@ -85,8 +87,8 @@ public class Render {
     @OnlyIn(Dist.CLIENT)
     public synchronized void rebuildBuffer() {
         var stack = new PoseStack();
-        var builder = new BufferBuilder(XRAY_TYPE.bufferSize() * ores.oreList.size());
-        builder.begin(XRAY_TYPE.mode(), XRAY_TYPE.format());
+        var tesselator = new Tesselator(XRAY_TYPE.bufferSize() * ores.oreList.size());
+        var builder = tesselator.begin(XRAY_TYPE.mode(), XRAY_TYPE.format());
         for (var b : ores.oreList) {
             if (b != null) {
                 renderShape(stack,builder,Shapes.block(),b.getX(),b.getY(),b.getZ(),
@@ -95,7 +97,7 @@ public class Render {
         }
         var vbuf = new VertexBuffer(VertexBuffer.Usage.DYNAMIC);
         vbuf.bind();
-        vbuf.upload(builder.end());
+        vbuf.upload(builder.build());
 
         if (vertexBuf != null) vertexBuf.close();
         vertexBuf = vbuf;
@@ -104,6 +106,7 @@ public class Render {
 
     @OnlyIn(Dist.CLIENT)
     public void drawOres(RenderLevelStageEvent event) {
+
         if (XRAY_TYPE == null) {
             try {
                 XRAY_TYPE = buildRenderType();
@@ -119,9 +122,9 @@ public class Render {
         if (vertexBuf == null) return;
 
         Minecraft thisInstance = Minecraft.getInstance();
-        
+
         Vec3 view = thisInstance.gameRenderer.getMainCamera().getPosition();
-        
+
         PoseStack stack = event.getPoseStack();
 
         stack.pushPose();
@@ -158,8 +161,8 @@ public class Render {
             f = f / f3;
             f1 = f1 / f3;
             f2 = f2 / f3;
-            vcon.vertex(posestack$pose.pose(), (float)(x1 + x), (float)(y1 + y), (float)(z1 + z)).color(r, g, b, a).normal(posestack$pose.normal(), f, f1, f2).color(r,g,b,a).endVertex();
-            vcon.vertex(posestack$pose.pose(), (float)(x2 + x), (float)(y2 + y), (float)(z2 + z)).color(r, g, b, a).normal(posestack$pose.normal(), f, f1, f2).color(r,g,b,a).endVertex();
+            vcon.addVertex(posestack$pose, (float)(x1 + x), (float)(y1 + y), (float)(z1 + z)).setColor(r, g, b, a).setNormal(f, f1, f2);
+            vcon.addVertex(posestack$pose, (float)(x2 + x), (float)(y2 + y), (float)(z2 + z)).setColor(r, g, b, a).setNormal(f, f1, f2);
 
         });
     }

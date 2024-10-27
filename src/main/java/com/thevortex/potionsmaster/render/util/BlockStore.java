@@ -1,14 +1,13 @@
 package com.thevortex.potionsmaster.render.util;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
-
-import com.thevortex.potionsmaster.render.util.BlockData;
-import com.thevortex.potionsmaster.render.util.SimpleBlockData;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 public class BlockStore {
 
@@ -27,14 +26,14 @@ public class BlockStore {
 
             ResourceLocation location = null;
             try {
-                location = new ResourceLocation(e.getBlockName());
+                location = ResourceLocation.tryParse(e.getBlockName());
             } catch (Exception ignored) {
             }
             ;
             if (location == null)
                 continue;
 
-            Block block = ForgeRegistries.BLOCKS.getValue(location);
+            Block block = BuiltInRegistries.BLOCK.get(location);
             if (block == null)
                 continue;
 

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " W ",
+    " W ",
+    " o "
+  ],
+  "key": {
+    "W": {
+      "tag": "c:gems/quartz"
+    },
+    "o": {
+      "tag": "c:gems/diamond"
+    }
+  },
+  "result": {
+    "id": "potionsmaster:pestle"
+  }
+}

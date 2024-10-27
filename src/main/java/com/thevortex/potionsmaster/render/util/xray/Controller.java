@@ -4,7 +4,6 @@ package com.thevortex.potionsmaster.render.util.xray;
 import com.thevortex.potionsmaster.PotionsMaster;
 import com.thevortex.potionsmaster.render.util.BlockStore;
 import com.thevortex.potionsmaster.render.util.WorldRegion;
-import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import org.joml.Vector3d;
@@ -23,7 +22,7 @@ public class Controller {
 		add(Blocks.AIR);
 		add(Blocks.BEDROCK);
 		add(Blocks.STONE);
-		add(Blocks.GRASS);
+		add(Blocks.GRASS_BLOCK);
 		add(Blocks.DIRT);
 	}};
 

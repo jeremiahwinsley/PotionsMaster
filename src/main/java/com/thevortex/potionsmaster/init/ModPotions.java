@@ -8,32 +8,32 @@ import net.minecraft.world.item.alchemy.Potion;
 
 
 public class ModPotions {
-    public static final MobEffectInstance COALSIGHT = new MobEffectInstance(ModRegistry.COALSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance IRONSIGHT = new MobEffectInstance(ModRegistry.IRONSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance REDSTONESIGHT = new MobEffectInstance(ModRegistry.REDSTONESIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance LAPISSIGHT = new MobEffectInstance(ModRegistry.LAPISSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance GOLDSIGHT = new MobEffectInstance(ModRegistry.GOLDSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance DIAMONDSIGHT = new MobEffectInstance(ModRegistry.DIAMONDSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance EMERALDSIGHT = new MobEffectInstance(ModRegistry.EMERALDSIGHT.get(), 6000, 0, false, true, true);
+    public static final MobEffectInstance COALSIGHT = new MobEffectInstance(ModRegistry.COALSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance IRONSIGHT = new MobEffectInstance(ModRegistry.IRONSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance REDSTONESIGHT = new MobEffectInstance(ModRegistry.REDSTONESIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance LAPISSIGHT = new MobEffectInstance(ModRegistry.LAPISSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance GOLDSIGHT = new MobEffectInstance(ModRegistry.GOLDSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance DIAMONDSIGHT = new MobEffectInstance(ModRegistry.DIAMONDSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance EMERALDSIGHT = new MobEffectInstance(ModRegistry.EMERALDSIGHT, 6000, 0, false, true, true);
 
-    public static final MobEffectInstance ALUMINIUMSIGHT = new MobEffectInstance(ModRegistry.ALUMINIUMSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance COPPERSIGHT = new MobEffectInstance(ModRegistry.COPPERSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance TINSIGHT = new MobEffectInstance(ModRegistry.TINSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance NICKELSIGHT = new MobEffectInstance(ModRegistry.NICKELSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance URANIUMSIGHT = new MobEffectInstance(ModRegistry.URANIUMSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance LEADSIGHT = new MobEffectInstance(ModRegistry.LEADSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance SILVERSIGHT = new MobEffectInstance(ModRegistry.SILVERSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance ZINCSIGHT = new MobEffectInstance(ModRegistry.ZINCSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance OSMIUMSIGHT = new MobEffectInstance(ModRegistry.OSMIUMSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance QUARTZSIGHT = new MobEffectInstance(ModRegistry.QUARTZSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance BISMUTHSIGHT = new MobEffectInstance(ModRegistry.BISMUTHSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance CRIMSONIRONSIGHT = new MobEffectInstance(ModRegistry.CRIMSONIRONSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance PLATINUMSIGHT = new MobEffectInstance(ModRegistry.PLATINUMSIGHT.get(), 6000, 0, false, true, true);
-    public static final MobEffectInstance NETHERITESIGHT = new MobEffectInstance(ModRegistry.NETHERITESIGHT.get(), 6000, 0, false, true, true);
+    public static final MobEffectInstance ALUMINIUMSIGHT = new MobEffectInstance(ModRegistry.ALUMINIUMSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance COPPERSIGHT = new MobEffectInstance(ModRegistry.COPPERSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance TINSIGHT = new MobEffectInstance(ModRegistry.TINSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance NICKELSIGHT = new MobEffectInstance(ModRegistry.NICKELSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance URANIUMSIGHT = new MobEffectInstance(ModRegistry.URANIUMSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance LEADSIGHT = new MobEffectInstance(ModRegistry.LEADSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance SILVERSIGHT = new MobEffectInstance(ModRegistry.SILVERSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance ZINCSIGHT = new MobEffectInstance(ModRegistry.ZINCSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance OSMIUMSIGHT = new MobEffectInstance(ModRegistry.OSMIUMSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance QUARTZSIGHT = new MobEffectInstance(ModRegistry.QUARTZSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance BISMUTHSIGHT = new MobEffectInstance(ModRegistry.BISMUTHSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance CRIMSONIRONSIGHT = new MobEffectInstance(ModRegistry.CRIMSONIRONSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance PLATINUMSIGHT = new MobEffectInstance(ModRegistry.PLATINUMSIGHT, 6000, 0, false, true, true);
+    public static final MobEffectInstance NETHERITESIGHT = new MobEffectInstance(ModRegistry.NETHERITESIGHT, 6000, 0, false, true, true);
 
-    public static final MobEffectInstance ALLTHEMODIUMSIGHT = new MobEffectInstance(ModRegistry.ALLTHEMODIUMSIGHT.get(), 3000, 0, false, true, true);
-    public static final MobEffectInstance VIBRANIUMSIGHT = new MobEffectInstance(ModRegistry.VIBRANIUMSIGHT.get(), 3000, 0, false, true, true);
-    public static final MobEffectInstance UNOBTAINIUMSIGHT = new MobEffectInstance(ModRegistry.UNOBTAINIUMSIGHT.get(), 3000, 0, false, true, true);
+    public static final MobEffectInstance ALLTHEMODIUMSIGHT = new MobEffectInstance(ModRegistry.ALLTHEMODIUMSIGHT, 3000, 0, false, true, true);
+    public static final MobEffectInstance VIBRANIUMSIGHT = new MobEffectInstance(ModRegistry.VIBRANIUMSIGHT, 3000, 0, false, true, true);
+    public static final MobEffectInstance UNOBTAINIUMSIGHT = new MobEffectInstance(ModRegistry.UNOBTAINIUMSIGHT, 3000, 0, false, true, true);
 
 
     public static final Potion COAL_SIGHT = new Potion("coal_sight", COALSIGHT);
@@ -66,7 +66,7 @@ public class ModPotions {
 
 
     private static ResourceLocation location(String name) {
-        return new ResourceLocation(Reference.MOD_ID, name);
+        return ResourceLocation.fromNamespaceAndPath(Reference.MOD_ID, name);
     }
 
 }

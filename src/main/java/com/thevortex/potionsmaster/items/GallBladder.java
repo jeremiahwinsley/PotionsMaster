@@ -6,12 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.List;
 
 public class GallBladder extends Item {
 
@@ -23,9 +18,8 @@ public class GallBladder extends Item {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level worldIn, LivingEntity entityLiving) {
 
-        if ((entityLiving instanceof Player) && (stack.getItem() == ModRegistry.GALLBLADDER.get())) {
-            Player player = (Player) entityLiving;
-            if (player.hasEffect(MobEffects.DIG_SLOWDOWN)) {
+        if ((entityLiving instanceof Player player) && (stack.getItem() == ModRegistry.GALLBLADDER.get())) {
+	        if (player.hasEffect(MobEffects.DIG_SLOWDOWN)) {
                 player.removeEffect(MobEffects.DIG_SLOWDOWN);
             }
         }

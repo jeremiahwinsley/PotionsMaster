@@ -22,40 +22,40 @@ public class Util {
 
         Matrix4f matrix4f = stack.last().pose();
         // top
-        buffer.vertex(matrix4f,x, y + size, z).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(matrix4f,x + size, y + size, z).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(matrix4f,x + size, y + size, z).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(matrix4f,x + size, y + size, z + size).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(matrix4f,x + size, y + size, z + size).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(matrix4f,x, y + size, z + size).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(matrix4f,x, y + size, z + size).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(matrix4f,x, y + size, z).color(red, green, blue, opacity).endVertex();
+        buffer.addVertex(matrix4f,x, y + size, z).setColor(red, green, blue, opacity);
+        buffer.addVertex(matrix4f,x + size, y + size, z).setColor(red, green, blue, opacity);
+        buffer.addVertex(matrix4f,x + size, y + size, z).setColor(red, green, blue, opacity);
+        buffer.addVertex(matrix4f,x + size, y + size, z + size).setColor(red, green, blue, opacity);
+        buffer.addVertex(matrix4f,x + size, y + size, z + size).setColor(red, green, blue, opacity);
+        buffer.addVertex(matrix4f,x, y + size, z + size).setColor(red, green, blue, opacity);
+        buffer.addVertex(matrix4f,x, y + size, z + size).setColor(red, green, blue, opacity);
+        buffer.addVertex(matrix4f,x, y + size, z).setColor(red, green, blue, opacity);
 
         // bottom
-        buffer.vertex(x + size, y, z).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(x + size, y, z + size).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(x + size, y, z + size).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(x, y, z + size).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(x, y, z + size).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(x, y, z).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(x, y, z).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(x + size, y, z).color(red, green, blue, opacity).endVertex();
+        buffer.addVertex(x + size, y, z).setColor(red, green, blue, opacity);
+        buffer.addVertex(x + size, y, z + size).setColor(red, green, blue, opacity);
+        buffer.addVertex(x + size, y, z + size).setColor(red, green, blue, opacity);
+        buffer.addVertex(x, y, z + size).setColor(red, green, blue, opacity);
+        buffer.addVertex(x, y, z + size).setColor(red, green, blue, opacity);
+        buffer.addVertex(x, y, z).setColor(red, green, blue, opacity);
+        buffer.addVertex(x, y, z).setColor(red, green, blue, opacity);
+        buffer.addVertex(x + size, y, z).setColor(red, green, blue, opacity);
 
         // side 1
-        buffer.vertex(x + size, y, z + size).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(x + size, y + size, z + size).color(red, green, blue, opacity).endVertex();
+        buffer.addVertex(x + size, y, z + size).setColor(red, green, blue, opacity);
+        buffer.addVertex(x + size, y + size, z + size).setColor(red, green, blue, opacity);
 
         // side 2
-        buffer.vertex(x + size, y, z).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(x + size, y + size, z).color(red, green, blue, opacity).endVertex();
+        buffer.addVertex(x + size, y, z).setColor(red, green, blue, opacity);
+        buffer.addVertex(x + size, y + size, z).setColor(red, green, blue, opacity);
 
         // side 3
-        buffer.vertex(x, y, z + size).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(x, y + size, z + size).color(red, green, blue, opacity).endVertex();
+        buffer.addVertex(x, y, z + size).setColor(red, green, blue, opacity);
+        buffer.addVertex(x, y + size, z + size).setColor(red, green, blue, opacity);
 
         // side 4
-        buffer.vertex(x, y, z).color(red, green, blue, opacity).endVertex();
-        buffer.vertex(x, y + size, z).color(red, green, blue, opacity).endVertex();
+        buffer.addVertex(x, y, z).setColor(red, green, blue, opacity);
+        buffer.addVertex(x, y + size, z).setColor(red, green, blue, opacity);
     }
 
 

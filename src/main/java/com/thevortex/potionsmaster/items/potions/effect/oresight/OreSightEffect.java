@@ -9,8 +9,8 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 public class OreSightEffect extends MobEffect {
     protected String effectType;
@@ -21,7 +21,7 @@ public class OreSightEffect extends MobEffect {
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
 
         return duration > 0;
     }
@@ -29,22 +29,23 @@ public class OreSightEffect extends MobEffect {
     public String getEffectType(){
         return this.effectType;
     }
+
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
         BlockStore store = PotionsMaster.blockStore;
         if ((entityLivingBaseIn instanceof LocalPlayer)) {
 
                 BlockDataWithUUID bdUUID = store.getStoreByReference(this.effectType);
                 BlockData oreSight = bdUUID.getBlockData();
-                if (!oreSight.isDrawing() && entityLivingBaseIn.getEffect(this) != null) {
+                if (!oreSight.isDrawing() /*&& entityLivingBaseIn.getEffect(this) != null TODO: Check can probably get removed*/) {
                     oreSight.setDrawing(true);
                     if (!Controller.drawOres()) {
                         Controller.toggleDrawOres();
                     }
                 }
             }
-            super.applyEffectTick(entityLivingBaseIn, amplifier);
+            return super.applyEffectTick(entityLivingBaseIn, amplifier);
 
     }
 

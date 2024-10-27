@@ -3,7 +3,6 @@ package com.thevortex.potionsmaster.init;
 
 
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.food.Foods;
 
 public class ModFoods {
 
@@ -14,8 +13,8 @@ public class ModFoods {
 
 
     static {
-        BEZOAR = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.5F).fast().alwaysEat().build();
-        ACTIVATEDCHARCOAL = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.5F).fast().alwaysEat().build();
-        GALLBLADDER = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.5F).fast().alwaysEat().build();
+        BEZOAR = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.5F).fast().alwaysEdible().build();
+        ACTIVATEDCHARCOAL = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.5F).fast().alwaysEdible().build();
+        GALLBLADDER = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.5F).fast().alwaysEdible().build();
     }
 }

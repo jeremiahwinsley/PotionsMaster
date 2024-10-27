@@ -34,10 +34,10 @@ public class Ores {
     public static final TagKey<Block> UNOBTAINIUM = makeWrapperTag("ores/unobtainium");
 
     private static TagKey<Block> makeWrapperTag(String tagname) {
-        return BlockTags.create(new ResourceLocation("forge", tagname));
+        return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", tagname));
 
     }
     private static TagKey<Block> vanillaWrapper(String tag){
-        return BlockTags.create(new ResourceLocation("minecraft", tag));
+        return BlockTags.create(ResourceLocation.withDefaultNamespace(tag));
     }
 }

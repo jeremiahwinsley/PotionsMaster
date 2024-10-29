@@ -5,15 +5,15 @@ import com.thevortex.potionsmaster.render.util.OutlineColor;
 public class SimpleBlockData {
 
     private String name;
-    private String blockName;
+    private String oreTag;
     private int order;
 
-    private OutlineColor color;
+    private int[]  color;
     private boolean drawing;
 
-    public SimpleBlockData(String name, String blockName, OutlineColor color, boolean drawing, int order) {
+    public SimpleBlockData(String name, String oreTag, int[] color, boolean drawing, int order) {
         this.name = name;
-        this.blockName = blockName;
+        this.oreTag = oreTag;
         this.color = color;
         this.drawing = drawing;
         this.order = order;
@@ -23,12 +23,12 @@ public class SimpleBlockData {
         return name;
     }
 
-    public String getBlockName() {
-        return blockName;
+    public String getoreTag() {
+        return oreTag;
     }
 
     public OutlineColor getColor() {
-        return color;
+        return new OutlineColor(color[0], color[1], color[2]);
     }
 
     public boolean isDrawing() {

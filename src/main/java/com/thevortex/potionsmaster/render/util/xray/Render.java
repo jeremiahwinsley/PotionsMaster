@@ -128,10 +128,13 @@ public class Render {
         PoseStack stack = event.getPoseStack();
 
         stack.pushPose();
+        RenderSystem.applyModelViewMatrix();
+        RenderSystem.depthFunc(GL11.GL_ALWAYS);
+        stack.mulPose(event.getModelViewMatrix());
         stack.translate(-view.x,-view.y,-view.z);
         Profile.BLOCKS.apply(); // Sets GL state for block drawing
 
-        RenderSystem.setShader(GameRenderer::getRendertypeLinesShader);
+        RenderSystem.setShader(GameRenderer::getPositionColorShader);
         RenderSystem.disableCull();
         RenderSystem.disableDepthTest();
         RenderSystem.depthMask(false);
@@ -141,14 +144,16 @@ public class Render {
         assert thisRenderer != null;
         thisRenderer.COLOR_MODULATOR.set(0.0f);
 
-        vertexBuf.drawWithShader(stack.last().pose(), event.getProjectionMatrix(),thisRenderer);
+        vertexBuf.drawWithShader(stack.last().pose(), event.getProjectionMatrix(),RenderSystem.getShader());
 
         VertexBuffer.unbind();
+        RenderSystem.depthFunc(GL11.GL_LEQUAL);
         RenderSystem.enableCull();
         RenderSystem.enableDepthTest();
         RenderSystem.depthMask(true);
 
         stack.popPose();
+        RenderSystem.applyModelViewMatrix();
         Profile.BLOCKS.clean();
     }
     public static void renderShape(PoseStack pose, VertexConsumer vcon, VoxelShape shape, double x, double y, double z, float r, float g, float b, float a) {

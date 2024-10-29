@@ -1,5 +1,8 @@
 package com.thevortex.potionsmaster;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.thevortex.potionsmaster.events.PotionExpiry;
 import com.thevortex.potionsmaster.init.ModRegistry;
 import com.thevortex.potionsmaster.items.potions.recipes.oresight.AllthemodiumPotionRecipe;
@@ -61,7 +64,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedOutEve
 public class PotionsMaster {
 
 	public static final String MOD_ID = Reference.MOD_ID;
-	//public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
 	public static BlockStore blockStore = new BlockStore();
 

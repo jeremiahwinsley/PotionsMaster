@@ -26,7 +26,7 @@ public class BlockStore {
 
             ResourceLocation location = null;
             try {
-                location = ResourceLocation.tryParse(e.getBlockName());
+                location = ResourceLocation.tryParse(e.getoreTag());
             } catch (Exception ignored) {
             }
             ;
@@ -40,7 +40,7 @@ public class BlockStore {
             blockData.add(
                     new BlockData(
                             e.getName(),
-                            e.getBlockName(),
+                            e.getoreTag(),
                             e.getColor(),
                             e.isDrawing(),
                             e.getOrder()
@@ -52,13 +52,13 @@ public class BlockStore {
     }
 
     public void put(BlockData data) {
-        if (this.storeReference.containsKey(data.getBlockName()))
+        if (this.storeReference.containsKey(data.getoreTag()))
             return;
 
         UUID uniqueId = UUID.randomUUID();
         this.store.put(uniqueId, data);
 
-        this.storeReference.put(data.getBlockName(), uniqueId);
+        this.storeReference.put(data.getoreTag(), uniqueId);
     }
 
     public HashMap<UUID, BlockData> getStore() {
@@ -86,7 +86,7 @@ public class BlockStore {
     }
 
     public void toggleDrawing(BlockData data) {
-        UUID uniqueId = storeReference.get(data.getBlockName());
+        UUID uniqueId = storeReference.get(data.getoreTag());
         if (uniqueId == null)
             return;
 

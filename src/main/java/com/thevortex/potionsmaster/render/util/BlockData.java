@@ -6,14 +6,14 @@ import com.thevortex.potionsmaster.render.util.OutlineColor;
 public class BlockData {
 
     private String entryName;
-    private String blockName;
+    private String oreTag;
     private OutlineColor color;
     private boolean drawing;
     private int order;
 
-    public BlockData(String entryName, String blockName, OutlineColor color, boolean drawing, int order) {
+    public BlockData(String entryName, String oreTag, OutlineColor color, boolean drawing, int order) {
         this.entryName = entryName;
-        this.blockName = blockName;
+        this.oreTag = oreTag;
         this.color = color;
         this.drawing = drawing;
         this.order = order;
@@ -23,8 +23,8 @@ public class BlockData {
         return entryName;
     }
 
-    public String getBlockName() {
-        return blockName;
+    public String getoreTag() {
+        return oreTag;
     }
 
     public OutlineColor getColor() {

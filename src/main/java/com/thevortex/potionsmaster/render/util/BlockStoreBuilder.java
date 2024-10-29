@@ -1,9 +1,17 @@
 package com.thevortex.potionsmaster.render.util;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-
+import java.util.List;
+import java.nio.file.*;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 import com.thevortex.potionsmaster.PotionsMaster;
 import com.thevortex.potionsmaster.reference.Ores;
+
+import net.minecraft.client.Minecraft;
 
 
 public class BlockStoreBuilder {
@@ -11,9 +19,47 @@ public class BlockStoreBuilder {
 
     public static ArrayList<BlockData> list = new ArrayList<BlockData>();
 
+
+    public static List<BlockData> scanFolder(String folderPath) {
+        List<BlockData> blockDataList = new ArrayList<>();
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(folderPath), "*.json")) {
+            for (Path entry : stream) {
+                BlockData blockData = readJsonFile(entry);
+                blockDataList.add(blockData);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return blockDataList;
+    }
+
+    private static BlockData readJsonFile(Path filePath) {
+        BlockData blockDataList = null;
+        try {
+            String content = new String(Files.readAllBytes(filePath), StandardCharsets.UTF_8);
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<BlockData>>(){}.getType();
+            blockDataList = gson.fromJson(content, listType);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return blockDataList;
+    }
+
+    public static void loadPotions(String folderPath) {
+        
+        List<BlockData> blockDataList = scanFolder(folderPath);
+        for (BlockData blockData : blockDataList) {
+            list.add(blockData);
+        }
+        PotionsMaster.blockStore.setStore(list);
+    }
+
     public static void init() {
 
-
+        loadPotions("./config/potionsmaster/");
+        PotionsMaster.LOGGER.info("BlockStoreBuilder: Loaded " + list.size() + " blocks from config/potionsmaster/");
+/* 
         list.add(new BlockData("CoalOre", Ores.COAL.toString(), new OutlineColor(32, 32, 32), false, 0));
         list.add(new BlockData("IronOre", Ores.IRON.toString(), new OutlineColor(228, 192, 170), false, 0));
         list.add(new BlockData("CopperOre", Ores.COPPER.toString(), new OutlineColor(183, 112, 58), false, 0));
@@ -40,8 +86,8 @@ public class BlockStoreBuilder {
         list.add(new BlockData("VibraniumOre", Ores.VIBRANIUM.toString(), new OutlineColor(38, 222, 136), false, 0));
         list.add(new BlockData("UnobtainiumOre", Ores.UNOBTAINIUM.toString(), new OutlineColor(209, 82, 227), false, 0));
 
-
-        PotionsMaster.blockStore.setStore(list);
+*/
+    
 
     }
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.nio.file.*;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import com.thevortex.potionsmaster.PotionsMaster;
@@ -37,9 +38,10 @@ public class BlockStoreBuilder {
         BlockData blockDataList = null;
         try {
             String content = new String(Files.readAllBytes(filePath), StandardCharsets.UTF_8);
-            Gson gson = new Gson();
+            PotionsMaster.LOGGER.info(content);
+            JsonObject jsonObject = new Gson().fromJson(content, JsonObject.class);
             Type listType = new TypeToken<ArrayList<BlockData>>(){}.getType();
-            blockDataList = gson.fromJson(content, listType);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

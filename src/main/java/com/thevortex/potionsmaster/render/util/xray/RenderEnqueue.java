@@ -51,7 +51,7 @@ public class RenderEnqueue implements Runnable {
 		if (Controller.getBlockStore().getStore().containsKey(defaultState)) // it's a block we are monitoring
 		{
 			if (!add) {
-				Render.ores.remove(new BlockInfo(pos, null, 0.0));
+				Render.ores.remove(new BlockInfo(pos, 0, 0.0));
 				return;
 			}
 
@@ -65,7 +65,7 @@ public class RenderEnqueue implements Runnable {
 			double alpha = Math.max(0, ((Controller.getRadius() - PotionsMaster.proxy.getClientPlayer().distanceToSqr(pos.getX(), pos.getY(), pos.getZ())) / Controller.getRadius()) * 255);
 
 			// the block was added to the world, let's add it to the drawing buffer
-			Render.ores.add(new BlockInfo(new Vec3i(pos.getX(),pos.getY(),pos.getZ()), data.getColor().getColor(), alpha));
+			Render.ores.add(new BlockInfo(new Vec3i(pos.getX(),pos.getY(),pos.getZ()), data.getColor(), alpha));
 		}
 	}
 
@@ -231,7 +231,7 @@ public class RenderEnqueue implements Runnable {
 								//double alpha = Math.max(0, ((Controller.getRadius() - PotionsMaster.proxy.getClientPlayer().getDistanceSq(x + i, y + j, z + k)) / Controller.getRadius() ) * 255);
 								double alpha = Math.max(0, Controller.getRadius() - PotionsMaster.proxy.getClientPlayer().distanceToSqr(x + i, y + j, z + k) / (Controller.getRadius() / 2));
 								// Push the block to the render queue
-								renderQueue.add(new BlockInfo(x + i, y + j, z + k, dataWithUUID.getBlockData().getColor().getColor(), 1.0f));
+								renderQueue.add(new BlockInfo(x + i, y + j, z + k, dataWithUUID.getBlockData().getColor(), 1.0f));
 							}
 						}
 					}

@@ -5,15 +5,24 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import org.joml.Matrix4f;
 
 public class Util {
+    public static float[] getComponents(int color) {
+        float[] f = new float[4];
+        f[0] = (float) ((color >> 16) & 0xFF)/255f;
+        f[1] = (float) ((color >> 8) & 0xFF)/255f;
+        f[2] = (float) (color & 0xFF)/255f;
+        f[3] = (float) ((color >> 24) & 0xff)/255f;
 
+        return f;
+    }
 
     public static void renderBlock(PoseStack stack, VertexConsumer buffer, BlockInfo blockinfo) {
         if (blockinfo == null)
             return;
         final float size = 1.0f;
-        float red = (blockinfo.color[0] >> 16 & 0xff) / 255f;
-        float green = (blockinfo.color[1] >> 8 & 0xff) / 255f;
-        float blue = (blockinfo.color[2] & 0xff) / 255f;
+        float[] color = getComponents(blockinfo.color);
+        float red = color[0];
+        float green = color[1];
+        float blue = color[2];
 //        float opacity = (float)blockinfo.alpha;
         float opacity = 1.0f;
         float x = blockinfo.getX();

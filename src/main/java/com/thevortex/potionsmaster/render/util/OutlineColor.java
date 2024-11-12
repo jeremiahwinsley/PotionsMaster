@@ -1,6 +1,6 @@
 package com.thevortex.potionsmaster.render.util;
 
-public class OutlineColor {
+public class OutlineColor{
     private int r;
     private int g;
     private int b;

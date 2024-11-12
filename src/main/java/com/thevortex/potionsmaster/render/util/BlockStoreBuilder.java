@@ -4,15 +4,25 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.nio.file.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import com.thevortex.potionsmaster.PotionsMaster;
+import com.thevortex.potionsmaster.init.ModRegistry;
+import com.thevortex.potionsmaster.items.potions.effect.oresight.OreSightEffect;
+import com.thevortex.potionsmaster.items.powders.base.BasePowder;
+import com.thevortex.potionsmaster.items.powders.base.CalcinatedPowder;
 import com.thevortex.potionsmaster.reference.Ores;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 
 public class BlockStoreBuilder {
@@ -35,17 +45,25 @@ public class BlockStoreBuilder {
     }
 
     private static BlockData readJsonFile(Path filePath) {
-        BlockData blockDataList = null;
+        BlockData blockData = null;
         try {
             String content = new String(Files.readAllBytes(filePath), StandardCharsets.UTF_8);
-            PotionsMaster.LOGGER.info(content);
             JsonObject jsonObject = new Gson().fromJson(content, JsonObject.class);
-            Type listType = new TypeToken<ArrayList<BlockData>>(){}.getType();
+            for (String key : jsonObject.keySet()) {
+                blockData = new BlockData(
+                    jsonObject.get("entryname").getAsString(),
+                    jsonObject.get("oretag").getAsString(),
+                    jsonObject.get("color").getAsInt(),
+                    jsonObject.get("drawing").getAsBoolean(),
+                    jsonObject.get("order").getAsInt()
+                );
+            
+            }
             
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return blockDataList;
+        return blockData;
     }
 
     public static void loadPotions(String folderPath) {
@@ -60,7 +78,7 @@ public class BlockStoreBuilder {
     public static void init() {
 
         loadPotions("./config/potionsmaster/");
-        PotionsMaster.LOGGER.info("BlockStoreBuilder: Loaded " + list.size() + " blocks from config/potionsmaster/");
+        
 /* 
         list.add(new BlockData("CoalOre", Ores.COAL.toString(), new OutlineColor(32, 32, 32), false, 0));
         list.add(new BlockData("IronOre", Ores.IRON.toString(), new OutlineColor(228, 192, 170), false, 0));

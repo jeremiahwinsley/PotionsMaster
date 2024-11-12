@@ -8,10 +8,10 @@ public class SimpleBlockData {
     private String oreTag;
     private int order;
 
-    private int[]  color;
+    private int color;
     private boolean drawing;
 
-    public SimpleBlockData(String name, String oreTag, int[] color, boolean drawing, int order) {
+    public SimpleBlockData(String name, String oreTag, int color, boolean drawing, int order) {
         this.name = name;
         this.oreTag = oreTag;
         this.color = color;
@@ -27,8 +27,8 @@ public class SimpleBlockData {
         return oreTag;
     }
 
-    public OutlineColor getColor() {
-        return new OutlineColor(color[0], color[1], color[2]);
+    public int getColor() {
+        return color;
     }
 
     public boolean isDrawing() {

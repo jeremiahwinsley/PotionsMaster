@@ -1,5 +1,12 @@
 package com.thevortex.potionsmaster.init;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
+import com.thevortex.potionsmaster.PotionsMaster;
 import com.thevortex.potionsmaster.blocks.Mortar;
 import com.thevortex.potionsmaster.items.Bezoar;
 import com.thevortex.potionsmaster.items.GallBladder;
@@ -10,6 +17,8 @@ import com.thevortex.potionsmaster.items.powders.base.CalcinatedPowder;
 import com.thevortex.potionsmaster.items.powders.calcinated.ActivatedCharcoal;
 import com.thevortex.potionsmaster.reference.Ores;
 import com.thevortex.potionsmaster.reference.Reference;
+import com.thevortex.potionsmaster.render.util.BlockData;
+
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
@@ -36,7 +45,7 @@ public class ModRegistry {
     public static final DeferredBlock<Mortar> MORTAR = BLOCKS.register("tile_mortar", () -> new Mortar());
 
     // Items
-
+    /*
     public static final DeferredItem<BasePowder> CHARCOAL_POWDER = ITEMS.register("charcoal_powder", () -> new BasePowder(new Item.Properties()));
     public static final DeferredItem<BasePowder> COAL_POWDER = ITEMS.register("coal_powder", () -> new BasePowder(new Item.Properties()));
     public static final DeferredItem<BasePowder> DIAMOND_POWDER = ITEMS.register("diamond_powder", () -> new BasePowder(new Item.Properties()));
@@ -61,8 +70,8 @@ public class ModRegistry {
     public static final DeferredItem<BasePowder> ALLTHEMODIUM_POWDER = ITEMS.register("allthemodium_powder", () -> new BasePowder(new Item.Properties()));
     public static final DeferredItem<BasePowder> VIBRANIUM_POWDER = ITEMS.register("vibranium_powder", () -> new BasePowder(new Item.Properties()));
     public static final DeferredItem<BasePowder> UNOBTAINIUM_POWDER = ITEMS.register("unobtainium_powder", () -> new BasePowder(new Item.Properties()));
-    public static final DeferredItem<BasePowder> NETHERITE_POWDER = ITEMS.register("netherite_powder", () -> new BasePowder(new Item.Properties()));
-    public static final DeferredItem<CalcinatedPowder> CALCINATEDCOAL_POWDER = ITEMS.register("calcinatedcoal_powder", () -> new CalcinatedPowder(new Item.Properties()));
+    public static final DeferredItem<BasePowder> NETHERITE_POWDER = ITEMS.register("netherite_powder", () -> new BasePowder(new Item.Properties())); */
+ /* public static final DeferredItem<CalcinatedPowder> CALCINATEDCOAL_POWDER = ITEMS.register("calcinatedcoal_powder", () -> new CalcinatedPowder(new Item.Properties()));
     public static final DeferredItem<CalcinatedPowder> CALCINATEDDIAMOND_POWDER = ITEMS.register("calcinateddiamond_powder", () -> new CalcinatedPowder(new Item.Properties()));
     public static final DeferredItem<CalcinatedPowder> CALCINATEDEMERALD_POWDER = ITEMS.register("calcinatedemerald_powder", () -> new CalcinatedPowder(new Item.Properties()));
     public static final DeferredItem<CalcinatedPowder> CALCINATEDGOLD_POWDER = ITEMS.register("calcinatedgold_powder", () -> new CalcinatedPowder(new Item.Properties()));
@@ -85,8 +94,8 @@ public class ModRegistry {
     public static final DeferredItem<CalcinatedPowder> CALCINATEDPLATINUM_POWDER = ITEMS.register("calcinatedplatinum_powder", () -> new CalcinatedPowder(new Item.Properties()));;
     public static final DeferredItem<CalcinatedPowder> CALCINATEDALLTHEMODIUM_POWDER = ITEMS.register("calcinatedallthemodium_powder", () -> new CalcinatedPowder(new Item.Properties()));;
     public static final DeferredItem<CalcinatedPowder> CALCINATEDVIBRANIUM_POWDER = ITEMS.register("calcinatedvibranium_powder", () -> new CalcinatedPowder(new Item.Properties()));;
-    public static final DeferredItem<CalcinatedPowder> CALCINATEDUNOBTAINIUM_POWDER = ITEMS.register("calcinatedunobtainium_powder", () -> new CalcinatedPowder(new Item.Properties()));;
-    public static final DeferredItem<BasePowder> ENDER_POWDER = ITEMS.register("ender_powder", () ->  new BasePowder(new Item.Properties()));
+    public static final DeferredItem<CalcinatedPowder> CALCINATEDUNOBTAINIUM_POWDER = ITEMS.register("calcinatedunobtainium_powder", () -> new CalcinatedPowder(new Item.Properties()));; */
+    public static final DeferredItem<Item> ENDER_POWDER = ITEMS.register("ender_powder", () ->  new Item(new Item.Properties()));
 
 
     public static final DeferredItem<Bezoar> BEZOAR = ITEMS.register("bezoar",() -> new Bezoar(new Item.Properties().food(ModFoods.BEZOAR)));
@@ -97,62 +106,8 @@ public class ModRegistry {
     public static final DeferredItem<com.thevortex.potionsmaster.items.Mortar> ITEM_MORTAR = ITEMS.register("tile_mortar",() -> new com.thevortex.potionsmaster.items.Mortar(MORTAR.get(), new Item.Properties()));
 
     // Potions
-
-    public static final DeferredHolder<Potion, Potion> COAL_SIGHT = POTIONS.register("coal_sight",  () -> ModPotions.COAL_SIGHT);
-    public static final DeferredHolder<Potion, Potion> IRON_SIGHT = POTIONS.register("iron_sight", () -> ModPotions.IRON_SIGHT);
-    public static final DeferredHolder<Potion, Potion> REDSTONE_SIGHT = POTIONS.register("redstone_sight", () -> ModPotions.REDSTONE_SIGHT);
-    public static final DeferredHolder<Potion, Potion> LAPIS_SIGHT = POTIONS.register("lapis_sight" ,() -> ModPotions.LAPIS_SIGHT);
-    public static final DeferredHolder<Potion, Potion> GOLD_SIGHT = POTIONS.register("gold_sight",() -> ModPotions.GOLD_SIGHT);
-    public static final DeferredHolder<Potion, Potion> DIAMOND_SIGHT = POTIONS.register("diamond_sight",() -> ModPotions.DIAMOND_SIGHT);
-    public static final DeferredHolder<Potion, Potion> EMERALD_SIGHT = POTIONS.register("emerald_sight",() -> ModPotions.EMERALD_SIGHT);
-
-    public static final DeferredHolder<Potion, Potion> ALUMINIUM_SIGHT = POTIONS.register("aluminum_sight",() -> ModPotions.ALUMINIUM_SIGHT);
-    public static final DeferredHolder<Potion, Potion> COPPER_SIGHT  = POTIONS.register("copper_sight",() -> ModPotions.COPPER_SIGHT);
-    public static final DeferredHolder<Potion, Potion> TIN_SIGHT = POTIONS.register("tin_sight",() -> ModPotions.TIN_SIGHT);
-    public static final DeferredHolder<Potion, Potion> NICKEL_SIGHT = POTIONS.register("nickel_sight",() -> ModPotions.NICKEL_SIGHT);
-    public static final DeferredHolder<Potion, Potion> URANIUM_SIGHT = POTIONS.register("uranium_sight",() -> ModPotions.URANIUM_SIGHT);
-    public static final DeferredHolder<Potion, Potion> LEAD_SIGHT = POTIONS.register("lead_sight",() -> ModPotions.LEAD_SIGHT);
-    public static final DeferredHolder<Potion, Potion> SILVER_SIGHT = POTIONS.register("silver_sight",() -> ModPotions.SILVER_SIGHT);
-    public static final DeferredHolder<Potion, Potion> ZINC_SIGHT = POTIONS.register("zinc_sight",() -> ModPotions.ZINC_SIGHT);
-    public static final DeferredHolder<Potion, Potion> OSMIUM_SIGHT = POTIONS.register("osmium_sight",() -> ModPotions.OSMIUM_SIGHT);
-    public static final DeferredHolder<Potion, Potion> QUARTZ_SIGHT = POTIONS.register("quartz_sight",() -> ModPotions.QUARTZ_SIGHT);
-    public static final DeferredHolder<Potion, Potion> BISMUTH_SIGHT = POTIONS.register("bismuth_sight",() -> ModPotions.BISMUTH_SIGHT);
-    public static final DeferredHolder<Potion, Potion> CRIMSONIRON_SIGHT = POTIONS.register("crimsoniron_sight",() -> ModPotions.CRIMSONIRON_SIGHT);
-    public static final DeferredHolder<Potion, Potion> PLATINUM_SIGHT = POTIONS.register("platinum_sight",() -> ModPotions.PLATINUM_SIGHT);
-    public static final DeferredHolder<Potion, Potion> NETHERITE_SIGHT = POTIONS.register("netherite_sight",() -> ModPotions.NETHERITE_SIGHT);
-    public static final DeferredHolder<Potion, Potion> ALLTHEMODIUM_SIGHT = POTIONS.register("allthemodium_sight",() -> ModPotions.ALLTHEMODIUM_SIGHT);
-    public static final DeferredHolder<Potion, Potion> VIBRANIUM_SIGHT = POTIONS.register("vibranium_sight",() -> ModPotions.VIBRANIUM_SIGHT);
-    public static final DeferredHolder<Potion, Potion> UNOBTAINIUM_SIGHT = POTIONS.register("unobtainium_sight",() -> ModPotions.UNOBTAINIUM_SIGHT);
-
-
-    // Mob Effects
-
-    public static DeferredHolder<MobEffect, MobEffect> COALSIGHT = MOBEFFECTS.register("coalpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.COAL.toString(), 65793));
-    public static DeferredHolder<MobEffect, MobEffect> IRONSIGHT= MOBEFFECTS.register("ironpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.IRON.toString(), 14991530));
-    public static DeferredHolder<MobEffect, MobEffect> REDSTONESIGHT= MOBEFFECTS.register("redstonepotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.REDSTONE.toString() ,16711680));
-    public static DeferredHolder<MobEffect, MobEffect> LAPISSIGHT= MOBEFFECTS.register("lapispotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.LAPIS.toString(), 658175));
-    public static DeferredHolder<MobEffect, MobEffect> GOLDSIGHT= MOBEFFECTS.register("goldpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.GOLD.toString(),13938487));
-    public static DeferredHolder<MobEffect, MobEffect> DIAMONDSIGHT= MOBEFFECTS.register("diamondpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.DIAMOND.toString(),4053987));
-    public static DeferredHolder<MobEffect, MobEffect> EMERALDSIGHT= MOBEFFECTS.register("emeraldpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.EMERALD.toString(),65280));
-
-    public static DeferredHolder<MobEffect, MobEffect> ALUMINIUMSIGHT= MOBEFFECTS.register("aluminiumpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.ALUMINIUM.toString(),14935011));
-    public static DeferredHolder<MobEffect, MobEffect> COPPERSIGHT= MOBEFFECTS.register("copperpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.COPPER.toString(),12021818));
-    public static DeferredHolder<MobEffect, MobEffect> TINSIGHT= MOBEFFECTS.register("tinpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.TIN.toString(),7895160));
-    public static DeferredHolder<MobEffect, MobEffect> NICKELSIGHT= MOBEFFECTS.register("nickelpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.NICKEL.toString(),11118980));
-    public static DeferredHolder<MobEffect, MobEffect> URANIUMSIGHT= MOBEFFECTS.register("uraniumpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.URANIUM.toString(),8316792));
-    public static DeferredHolder<MobEffect, MobEffect> LEADSIGHT= MOBEFFECTS.register("leadpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.LEAD.toString(),8162502));
-    public static DeferredHolder<MobEffect, MobEffect> SILVERSIGHT= MOBEFFECTS.register("silverpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.SILVER.toString(),10805479));
-    public static DeferredHolder<MobEffect, MobEffect> ZINCSIGHT= MOBEFFECTS.register("zincpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.ZINC.toString(),11908469));
-    public static DeferredHolder<MobEffect, MobEffect> OSMIUMSIGHT= MOBEFFECTS.register("osmiumpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.OSMIUM.toString(),12634589));
-    public static DeferredHolder<MobEffect, MobEffect> QUARTZSIGHT= MOBEFFECTS.register("quartzpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.QUARTZ.toString(),8162502));
-    public static DeferredHolder<MobEffect, MobEffect> BISMUTHSIGHT= MOBEFFECTS.register("bismuthpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.BISMUTH.toString(),10805479));
-    public static DeferredHolder<MobEffect, MobEffect> CRIMSONIRONSIGHT= MOBEFFECTS.register("crimsonironpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.CRIMSONIRON.toString(),11908469));
-    public static DeferredHolder<MobEffect, MobEffect> PLATINUMSIGHT= MOBEFFECTS.register("platinumpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.PLATINUM.toString(),12634589));
-    public static DeferredHolder<MobEffect, MobEffect> NETHERITESIGHT= MOBEFFECTS.register("netheritepotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.NETHERITE.toString(),16753920));
-    public static DeferredHolder<MobEffect, MobEffect> ALLTHEMODIUMSIGHT= MOBEFFECTS.register("allthemodiumpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.ALLTHEMODIUM.toString(), 16701786));
-    public static DeferredHolder<MobEffect, MobEffect> VIBRANIUMSIGHT= MOBEFFECTS.register("vibraniumpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.VIBRANIUM.toString(),2547336));
-    public static DeferredHolder<MobEffect, MobEffect> UNOBTAINIUMSIGHT= MOBEFFECTS.register("unobtainiumpotioneffect", () -> new OreSightEffect(MobEffectCategory.BENEFICIAL, Ores.UNOBTAINIUM.toString(),13718243));
-
+   
+    public static final List<BlockData> PotionList = register();
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CREATIVE_TAB = CREATIVE_TABS.register("creative_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable(Reference.tab()))
@@ -163,5 +118,29 @@ public class ModRegistry {
                     .forEach(output::accept))
             .build()
     );
+
+    public static DeferredHolder<Item,Item> createBasePowder(String name, BasePowder item) {
+        return ITEMS.register(name, () -> item);
+    }
+    public static DeferredHolder<Potion, Potion> createPotion(String name, Potion potion) {
+        return POTIONS.register(name, () -> potion);
+    }
+    public static DeferredHolder<MobEffect, MobEffect> createMobEffect(String name, OreSightEffect effect) {
+        return MOBEFFECTS.register(name, () -> effect);
+    }
+    public static DeferredItem createCalcinatedPowder(String name, CalcinatedPowder item) {
+        return ITEMS.register(name, () -> item);
+    }
+    
+    public static List<BlockData> register() {
+        List<BlockData> list = new ArrayList<>();
+        for(BlockData blockData : PotionsMaster.blockStore.getStore().values()) {
+            createBasePowder(blockData.getEntryName() + "_oresight_powder", new BasePowder(blockData.getColor(),new Item.Properties()));
+            createCalcinatedPowder("calcinated_" + blockData.getEntryName() + "_oresight_powder",new CalcinatedPowder(blockData.getColor(), new Item.Properties()));
+            createMobEffect(blockData.getEntryName() + "_sight", new OreSightEffect(MobEffectCategory.BENEFICIAL, blockData.getoreTag(), blockData.getColor()));
+            list.add(blockData);
+        }
+        return list;
+    }
 
 }

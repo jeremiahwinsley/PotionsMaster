@@ -9,6 +9,8 @@ import com.mojang.blaze3d.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.thevortex.potionsmaster.render.util.BlockInfo;
+import com.thevortex.potionsmaster.render.util.Util;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.RenderStateShard;
@@ -92,7 +94,7 @@ public class Render {
         for (var b : ores.oreList) {
             if (b != null) {
                 renderShape(stack,builder,Shapes.block(),b.getX(),b.getY(),b.getZ(),
-                        b.color[0]/255.0F,b.color[1]/255.0F,b.color[2]/255.0F,(float)b.alpha);
+                        b.color);
             }
         }
         var vbuf = new VertexBuffer(VertexBuffer.Usage.DYNAMIC);
@@ -156,8 +158,10 @@ public class Render {
         RenderSystem.applyModelViewMatrix();
         Profile.BLOCKS.clean();
     }
-    public static void renderShape(PoseStack pose, VertexConsumer vcon, VoxelShape shape, double x, double y, double z, float r, float g, float b, float a) {
+    public static void renderShape(PoseStack pose, VertexConsumer vcon, VoxelShape shape, double x, double y, double z, int color) {
         PoseStack.Pose posestack$pose = pose.last();
+        float[] col = Util.getComponents(color);
+
         shape.forAllEdges((x1, y1, z1, x2, y2, z2) -> {
             float f = (float)(x2 - x1);
             float f1 = (float)(y2 - y1);
@@ -166,8 +170,8 @@ public class Render {
             f = f / f3;
             f1 = f1 / f3;
             f2 = f2 / f3;
-            vcon.addVertex(posestack$pose, (float)(x1 + x), (float)(y1 + y), (float)(z1 + z)).setColor(r, g, b, a).setNormal(f, f1, f2);
-            vcon.addVertex(posestack$pose, (float)(x2 + x), (float)(y2 + y), (float)(z2 + z)).setColor(r, g, b, a).setNormal(f, f1, f2);
+            vcon.addVertex(posestack$pose, (float)(x1 + x), (float)(y1 + y), (float)(z1 + z)).setColor(col[0], col[1], col[2], col[3]).setNormal(f, f1, f2);
+            vcon.addVertex(posestack$pose, (float)(x2 + x), (float)(y2 + y), (float)(z2 + z)).setColor(col[0], col[1], col[2], col[3]).setNormal(f, f1, f2);
 
         });
     }

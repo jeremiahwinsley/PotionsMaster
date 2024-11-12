@@ -7,11 +7,11 @@ public class BlockData {
 
     private String entryName;
     private String oreTag;
-    private OutlineColor color;
+    private int color;
     private boolean drawing;
     private int order;
 
-    public BlockData(String entryName, String oreTag, OutlineColor color, boolean drawing, int order) {
+    public BlockData(String entryName, String oreTag, int color, boolean drawing, int order) {
         this.entryName = entryName;
         this.oreTag = oreTag;
         this.color = color;
@@ -27,11 +27,11 @@ public class BlockData {
         return oreTag;
     }
 
-    public OutlineColor getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(OutlineColor color) {
+    public void setColor(int color) {
         this.color = color;
     }
 

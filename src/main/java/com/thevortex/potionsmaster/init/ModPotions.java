@@ -8,6 +8,7 @@ import net.minecraft.world.item.alchemy.Potion;
 
 
 public class ModPotions {
+    /* 
     public static final MobEffectInstance COALSIGHT = new MobEffectInstance(ModRegistry.COALSIGHT, 6000, 0, false, true, true);
     public static final MobEffectInstance IRONSIGHT = new MobEffectInstance(ModRegistry.IRONSIGHT, 6000, 0, false, true, true);
     public static final MobEffectInstance REDSTONESIGHT = new MobEffectInstance(ModRegistry.REDSTONESIGHT, 6000, 0, false, true, true);
@@ -63,7 +64,7 @@ public class ModPotions {
     public static final Potion ALLTHEMODIUM_SIGHT = new Potion("allthemodium_sight", ALLTHEMODIUMSIGHT);
     public static final Potion VIBRANIUM_SIGHT = new Potion("vibranium_sight", VIBRANIUMSIGHT);
     public static final Potion UNOBTAINIUM_SIGHT = new Potion("unobtainium_sight", UNOBTAINIUMSIGHT);
-
+*/
 
     private static ResourceLocation location(String name) {
         return ResourceLocation.fromNamespaceAndPath(Reference.MOD_ID, name);

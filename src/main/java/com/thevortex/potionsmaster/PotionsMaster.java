@@ -5,30 +5,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.thevortex.potionsmaster.events.PotionExpiry;
 import com.thevortex.potionsmaster.init.ModRegistry;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.AllthemodiumPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.AluminiumPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.BismuthPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.CoalPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.CopperPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.CrimsonIronPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.DiamondPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.EmeraldPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.GoldPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.IronPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.LapisPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.LeadPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.NetheritePotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.NickelPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.OsmiumPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.PlatinumPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.QuartzPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.RedStonePotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.SilverPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.TinPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.UnobtainiumPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.UraniumPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.VibraniumPotionRecipe;
-import com.thevortex.potionsmaster.items.potions.recipes.oresight.ZincPotionRecipe;
 import com.thevortex.potionsmaster.network.PacketHandler;
 import com.thevortex.potionsmaster.proxy.ClientProxy;
 import com.thevortex.potionsmaster.proxy.CommonProxy;
@@ -44,8 +20,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
-import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
@@ -71,13 +45,13 @@ public class PotionsMaster {
 	public static CommonProxy proxy;
 
 	public PotionsMaster(IEventBus eventBus, ModContainer container, Dist dist) {
+		BlockStoreBuilder.init();
 		ModRegistry.BLOCKS.register(eventBus);
 		ModRegistry.ITEMS.register(eventBus);
 		ModRegistry.MOBEFFECTS.register(eventBus);
 		ModRegistry.POTIONS.register(eventBus);
 		ModRegistry.CREATIVE_TABS.register(eventBus);
-
-		BlockStoreBuilder.init();
+	
 
 		eventBus.register(setupMod.class);
 		eventBus.addListener(PacketHandler::register);
@@ -119,7 +93,7 @@ public class PotionsMaster {
 		}
 
 		private static void registerPotions(RegisterBrewingRecipesEvent event) {
-			event.getBuilder().addRecipe(new CoalPotionRecipe(
+		/* 	event.getBuilder().addRecipe(new CoalPotionRecipe(
 					Ingredient.of(getPotion(Potions.MUNDANE)),
 					Ingredient.of(ModRegistry.CALCINATEDCOAL_POWDER.get()),
 					getPotion(ModRegistry.COAL_SIGHT)));
@@ -215,7 +189,7 @@ public class PotionsMaster {
 			event.getBuilder().addRecipe(new NetheritePotionRecipe(
 					Ingredient.of(getPotion(Potions.MUNDANE)),
 					Ingredient.of(ModRegistry.CALCINATEDNETHERITE_POWDER.get()),
-					getPotion(ModRegistry.NETHERITE_SIGHT)));
+					getPotion(ModRegistry.NETHERITE_SIGHT)));*/
 		}
 		
 		private static ItemStack getPotion(Holder<Potion> potion) {

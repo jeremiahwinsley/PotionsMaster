@@ -107,7 +107,9 @@ public class ModRegistry {
 
     // Potions
    
-    public static final List<BlockData> PotionList = register();
+    public static final List<DeferredHolder<Item,Item>> BaseItemList = registerBaseItems();
+    public static final List<DeferredHolder<Item,Item>> CalcinatedItemList = registerCalcinatedItems();
+    public static final List<DeferredHolder<MobEffect,MobEffect>> EffectList = registerEffects();
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CREATIVE_TAB = CREATIVE_TABS.register("creative_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable(Reference.tab()))
@@ -128,19 +130,33 @@ public class ModRegistry {
     public static DeferredHolder<MobEffect, MobEffect> createMobEffect(String name, OreSightEffect effect) {
         return MOBEFFECTS.register(name, () -> effect);
     }
-    public static DeferredItem createCalcinatedPowder(String name, CalcinatedPowder item) {
+    public static DeferredHolder<Item,Item> createCalcinatedPowder(String name, CalcinatedPowder item) {
         return ITEMS.register(name, () -> item);
     }
     
-    public static List<BlockData> register() {
-        List<BlockData> list = new ArrayList<>();
+    public static List<DeferredHolder<Item,Item>> registerBaseItems() {
+        List<DeferredHolder<Item,Item>> list = new ArrayList<>();
         for(BlockData blockData : PotionsMaster.blockStore.getStore().values()) {
-            createBasePowder(blockData.getEntryName() + "_oresight_powder", new BasePowder(blockData.getColor(),new Item.Properties()));
-            createCalcinatedPowder("calcinated_" + blockData.getEntryName() + "_oresight_powder",new CalcinatedPowder(blockData.getColor(), new Item.Properties()));
-            createMobEffect(blockData.getEntryName() + "_sight", new OreSightEffect(MobEffectCategory.BENEFICIAL, blockData.getoreTag(), blockData.getColor()));
-            list.add(blockData);
+            list.add(createBasePowder(blockData.getEntryName() + "_oresight_powder", new BasePowder(blockData.getColor(),new Item.Properties())));
+            
         }
         return list;
     }
+    public static List<DeferredHolder<Item,Item>> registerCalcinatedItems() {
+        List<DeferredHolder<Item,Item>> list = new ArrayList<>();
+        for(BlockData blockData : PotionsMaster.blockStore.getStore().values()) {
+            list.add(createCalcinatedPowder("calcinated_" + blockData.getEntryName() + "_oresight_powder",new CalcinatedPowder(blockData.getColor(), new Item.Properties())));
+            
+        }
+        return list;
+    }
+    public static List<DeferredHolder<MobEffect,MobEffect>> registerEffects() {
+        List<DeferredHolder<MobEffect,MobEffect>> list = new ArrayList<>();
+        for(BlockData blockData : PotionsMaster.blockStore.getStore().values()) {
+            list.add(createMobEffect(blockData.getEntryName() + "_sight", new OreSightEffect(MobEffectCategory.BENEFICIAL, blockData.getoreTag(), blockData.getColor())));            
+        }
+        return list;
+    }
+       
 
 }

@@ -3,6 +3,7 @@ package com.thevortex.potionsmaster.init;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -19,14 +20,17 @@ import com.thevortex.potionsmaster.reference.Ores;
 import com.thevortex.potionsmaster.reference.Reference;
 import com.thevortex.potionsmaster.render.util.BlockData;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -99,9 +103,12 @@ public class ModRegistry {
     public static final DeferredItem<CalcinatedPowder> CALCINATEDUNOBTAINIUM_POWDER = ITEMS.register("calcinatedunobtainium_powder", () -> new CalcinatedPowder(new Item.Properties()));; */
     public static final DeferredItem<Item> ENDER_POWDER = ITEMS.register("ender_powder", () ->  new Item(new Item.Properties()));
 
+    @SuppressWarnings("unchecked")
+    private static HashMap<String, DeferredHolder<MobEffect,MobEffect>> EffectsListParsed = new HashMap();
     //public static final List<DeferredHolder<Item,Item>> BaseItemList = registerBaseItems();
     //public static final List<DeferredHolder<Item,Item>> CalcinatedItemList = registerCalcinatedItems();
     public static final List<DeferredHolder<MobEffect,MobEffect>> EffectList = registerEffects();
+    public static final List<DeferredHolder<Potion,Potion>> PotionList = registerPotions();
 
     public static final DeferredItem<Bezoar> BEZOAR = ITEMS.register("bezoar",() -> new Bezoar(new Item.Properties().food(ModFoods.BEZOAR)));
     public static final DeferredItem<GallBladder> GALLBLADDER = ITEMS.register("gallbladder",() -> new GallBladder(new Item.Properties().food(ModFoods.GALLBLADDER)));
@@ -125,16 +132,16 @@ public class ModRegistry {
     public static DeferredHolder<Item,Item> createBasePowder(String name, BasePowder item) {
         return ITEMS.register(name, () -> item);
     }
-    public static DeferredHolder<Potion, Potion> createPotion(String name, Potion potion) {
-        return POTIONS.register(name, () -> potion);
+    public static DeferredHolder<Item,Item> createCalcinatedPowder(String name, CalcinatedPowder item) {
+        return ITEMS.register(name, () -> item);
     }
     public static DeferredHolder<MobEffect, MobEffect> createMobEffect(String name, OreSightEffect effect) {
         return MOBEFFECTS.register(name, () -> effect);
     }
-    public static DeferredHolder<Item,Item> createCalcinatedPowder(String name, CalcinatedPowder item) {
-        return ITEMS.register(name, () -> item);
+    public static DeferredHolder<Potion, Potion> createPotion(String name, Potion potion) {
+        return POTIONS.register(name, () -> potion);
     }
-    
+
     public static List<DeferredHolder<Item,Item>> registerBaseItems() {
         List<DeferredHolder<Item,Item>> list = new ArrayList<>();
         for(BlockData blockData : PotionsMaster.blockStore.getStore().values()) {
@@ -154,10 +161,20 @@ public class ModRegistry {
     public static List<DeferredHolder<MobEffect,MobEffect>> registerEffects() {
         List<DeferredHolder<MobEffect,MobEffect>> list = new ArrayList<>();
         for(BlockData blockData : PotionsMaster.blockStore.getStore().values()) {
-            list.add(createMobEffect(blockData.getEntryName() + "_sight", new OreSightEffect(MobEffectCategory.BENEFICIAL, blockData.getoreTag(), blockData.getColor())));            
+            DeferredHolder<MobEffect,MobEffect> effect = createMobEffect(blockData.getEntryName() + "_sight", new OreSightEffect(MobEffectCategory.BENEFICIAL, blockData.getoreTag(), blockData.getColor()));
+            list.add(effect);            
+            EffectsListParsed.put(blockData.getEntryName(),effect);
+
         }
         return list;
     }
        
-
+    public static List<DeferredHolder<Potion,Potion>> registerPotions() {
+        List<DeferredHolder<Potion,Potion>> list = new ArrayList<>();
+        for(String potionName : EffectsListParsed.keySet()) {
+            DeferredHolder<Potion,Potion> potion = createPotion(potionName, new Potion(potionName + "_sight_potion", new MobEffectInstance(EffectsListParsed.get(potionName).getDelegate())));
+            list.add(potion);
+        }
+        return list;
+    }
 }

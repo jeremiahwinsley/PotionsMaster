@@ -43,7 +43,9 @@ public class ModRegistry {
 
     // Block(s?)
     public static final DeferredBlock<Mortar> MORTAR = BLOCKS.register("tile_mortar", () -> new Mortar());
-
+    // Potions
+   
+   
     // Items
     /*
     public static final DeferredItem<BasePowder> CHARCOAL_POWDER = ITEMS.register("charcoal_powder", () -> new BasePowder(new Item.Properties()));
@@ -97,6 +99,9 @@ public class ModRegistry {
     public static final DeferredItem<CalcinatedPowder> CALCINATEDUNOBTAINIUM_POWDER = ITEMS.register("calcinatedunobtainium_powder", () -> new CalcinatedPowder(new Item.Properties()));; */
     public static final DeferredItem<Item> ENDER_POWDER = ITEMS.register("ender_powder", () ->  new Item(new Item.Properties()));
 
+    //public static final List<DeferredHolder<Item,Item>> BaseItemList = registerBaseItems();
+    //public static final List<DeferredHolder<Item,Item>> CalcinatedItemList = registerCalcinatedItems();
+    public static final List<DeferredHolder<MobEffect,MobEffect>> EffectList = registerEffects();
 
     public static final DeferredItem<Bezoar> BEZOAR = ITEMS.register("bezoar",() -> new Bezoar(new Item.Properties().food(ModFoods.BEZOAR)));
     public static final DeferredItem<GallBladder> GALLBLADDER = ITEMS.register("gallbladder",() -> new GallBladder(new Item.Properties().food(ModFoods.GALLBLADDER)));
@@ -105,11 +110,7 @@ public class ModRegistry {
 
     public static final DeferredItem<com.thevortex.potionsmaster.items.Mortar> ITEM_MORTAR = ITEMS.register("tile_mortar",() -> new com.thevortex.potionsmaster.items.Mortar(MORTAR.get(), new Item.Properties()));
 
-    // Potions
-   
-   // public static final List<DeferredHolder<Item,Item>> BaseItemList = registerBaseItems();
-   // public static final List<DeferredHolder<Item,Item>> CalcinatedItemList = registerCalcinatedItems();
-    public static final List<DeferredHolder<MobEffect,MobEffect>> EffectList = registerEffects();
+
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CREATIVE_TAB = CREATIVE_TABS.register("creative_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable(Reference.tab()))

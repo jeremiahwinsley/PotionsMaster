@@ -148,11 +148,11 @@ public class RenderEnqueue implements Runnable {
 
                                 block = firstTag.get();
 								
-                                for(BlockData data: Controller.getBlockStore().getStore().values()) {
+                                for(BlockData data: PotionsMaster.blockStore.getStore().values()) {
 									PotionsMaster.LOGGER.debug("Checking block: " + block.location().toString() + " " + data.getoreTag());
 									if (block.location().toString().contains(data.getoreTag())) {
 										double alpha = Math.max(0, Controller.getRadius() - PotionsMaster.proxy.getClientPlayer().distanceToSqr(x + i, y + j, z + k) / (Controller.getRadius() / 2));
-										dataWithUUID = Controller.getBlockStore().getStoreByReference(data.getEntryName());
+										dataWithUUID = PotionsMaster.blockStore.getStoreByReference(data.getoreTag());
 										PotionsMaster.LOGGER.debug("Adding block to render queue: " + block.toString() + " " + dataWithUUID.getBlockData().getEntryName());
 										
 										if (dataWithUUID.getBlockData() == null || !dataWithUUID.getBlockData().isDrawing()) // fail safe

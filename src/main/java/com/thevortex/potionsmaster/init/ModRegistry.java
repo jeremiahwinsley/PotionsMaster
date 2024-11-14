@@ -107,8 +107,8 @@ public class ModRegistry {
 
     // Potions
    
-    public static final List<DeferredHolder<Item,Item>> BaseItemList = registerBaseItems();
-    public static final List<DeferredHolder<Item,Item>> CalcinatedItemList = registerCalcinatedItems();
+   // public static final List<DeferredHolder<Item,Item>> BaseItemList = registerBaseItems();
+   // public static final List<DeferredHolder<Item,Item>> CalcinatedItemList = registerCalcinatedItems();
     public static final List<DeferredHolder<MobEffect,MobEffect>> EffectList = registerEffects();
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CREATIVE_TAB = CREATIVE_TABS.register("creative_tab", () -> CreativeModeTab.builder()
